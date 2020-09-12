@@ -8,4 +8,6 @@
 
 4. Edit the member list in the code and save.
 
-5. Thats all, there you go !!
+5. After saving, go to sheet and click `create` button. 
+
+6. Thats all, there you go !!
