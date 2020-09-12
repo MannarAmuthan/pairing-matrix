@@ -3,18 +3,29 @@ function getMemberList() {
     return members;
 }
 
+function redZone() {
+    return 3;
+}
+
+function yellowZone() {
+    return 1;
+}
+
+function startingRow(){
+    return 10;
+}
+
 function getConfig() {
     var members = getMemberList();
+    var startRow=startingRow();
     var pairing_matrix = {
         "members": members,
         "matrix_x": "B",
-        "matrix_y": 7,
+        "matrix_y": startRow,
         "status_x": "B",
         "status_y": members.length + 10,
         "iteration_board_x": "B",
-        "iteration_board_y": (2 * members.length) + 15,
-        "red_zone": 3,
-        "yellow_zone": 1
+        "iteration_board_y": (2 * members.length) + 15
     }
     return pairing_matrix;
 }
@@ -28,17 +39,19 @@ function getColorCode(color) {
     }
     return colors[color];
 }
+
 function increaseCharacter(c, count) {
     return String.fromCharCode(c.charCodeAt(0) + count);
 }
+
 function intialize_names_dropdowns() {
     var helperText = "Please select name from given List";
     // first drop down
-    var cellOne = SpreadsheetApp.getActive().getRange('A3');
+    var cellOne = SpreadsheetApp.getActive().getRange('A5');
     var ruleOne = SpreadsheetApp.newDataValidation().requireValueInList(getMemberList(), true).setAllowInvalid(false).setHelpText(helperText).build();
     cellOne.setDataValidation(ruleOne);
     // second drop down
-    var cellTwo = SpreadsheetApp.getActive().getRange('B3');
+    var cellTwo = SpreadsheetApp.getActive().getRange('B5');
     var ruleTwo = SpreadsheetApp.newDataValidation().requireValueInList(getMemberList(), true).setAllowInvalid(false).setHelpText(helperText).build();
     cellTwo.setDataValidation(ruleTwo);
 }
@@ -126,14 +139,6 @@ function getStartXofIterationBoard() {
     return getConfig()['iteration_board_x'];
 }
 
-
-function redZone() {
-    return getConfig()['red_zone'];
-}
-
-function yellowZone() {
-    return getConfig()['yellow_zone'];
-}
 
 function isValidNumber(val) {
     if (val == "") { return false; }
@@ -275,7 +280,6 @@ function addDays() {
     }
 }
 
-
 function reduceDays() {
     inputNames = getInputs()
     if (inputNames.length == 2) {
@@ -292,4 +296,3 @@ function reduceDays() {
         updateIterationBoard(one, two, -1 * val);
     }
 }
-
