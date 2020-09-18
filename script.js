@@ -11,21 +11,22 @@ function yellowZone() {
     return 1;
 }
 
-function startingRow(){
+function startingRow() {
     return 10;
 }
 
 function getConfig() {
     var members = getMemberList();
-    var startRow=startingRow();
+    var startRow = startingRow();
+    var padding=(members.length + 3) + startRow;
     var pairing_matrix = {
         "members": members,
         "matrix_x": "B",
         "matrix_y": startRow,
         "status_x": "B",
-        "status_y": members.length + 10,
+        "status_y": padding,
         "iteration_board_x": "B",
-        "iteration_board_y": (2 * members.length) + 15
+        "iteration_board_y": (3 + members.length) + padding
     }
     return pairing_matrix;
 }
@@ -235,8 +236,8 @@ function getRangeOf(memberOne, memberTwo) {
 
 function getInputs() {
     let inputs = [0];
-    one = SpreadsheetApp.getActiveSheet().getRange('A3').getValue();
-    two = SpreadsheetApp.getActiveSheet().getRange('B3').getValue();
+    one = SpreadsheetApp.getActiveSheet().getRange('A5').getValue();
+    two = SpreadsheetApp.getActiveSheet().getRange('B5').getValue();
     if (one.length == 0 || two.length == 0) { Browser.msgBox("Please, Enter valid input"); return inputs }
     inputs = [one, two];
     return inputs;
@@ -260,7 +261,7 @@ function shellUpdation(newValue, range) {
 
 
 function addDays() {
-    inputNames = getInputs()
+    var inputNames = getInputs();
     if (inputNames.length == 2) {
         one = inputNames[0];
         two = inputNames[1];
@@ -281,7 +282,7 @@ function addDays() {
 }
 
 function reduceDays() {
-    inputNames = getInputs()
+    var inputNames = getInputs();
     if (inputNames.length == 2) {
         one = inputNames[0];
         two = inputNames[1];
