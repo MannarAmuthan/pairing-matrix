@@ -2,7 +2,7 @@
 
 1. Make a copy of it https://docs.google.com/spreadsheets/d/1kSxu8cZMDapehDM12bWQB_1yJHOlna5lt9uc1JtkAzc/edit#gid=0 in your drive.
 
-2. In the google sheets go to Tools-->Script Editor.
+2. In the google sheets go to Tools-->Script Editor or Extensions -> Apps Script.
 
 3. Copy and paste the [script.js](/script.js) code there.
 
